@@ -15,21 +15,29 @@ import org.bukkit.util.config.Configuration;
 import org.getspout.spoutapi.event.spout.SpoutCraftEnableEvent;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
+/*
+ *  iDisplay made by Hoddie54 & TheHutch
+ * 
+ *  Give credit when using this source code.
+ * 
+ */
+
+
 public class iDisplay extends JavaPlugin{
 
-	Logger log = Logger.getLogger("Minecraft");
+	Logger log = Logger.getLogger("Minecraft"); 
 	protected Configuration config;
 	
 	
 	@Override
 	public void onEnable(){
 		
-		setUpConfig();
+		setUpConfig(); //Gets Configuration files
 		
 		getCommand("ireload").setExecutor(this);
 		
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Type.CUSTOM_EVENT, new iDisplaySpoutListener(this), Priority.Normal, this);
+		pm.registerEvent(Type.CUSTOM_EVENT, new iDisplaySpoutListener(this), Priority.Normal, this); //Register Events
 		
 		config.getString("playerlist", "");
 		config.save();
@@ -52,10 +60,8 @@ public class iDisplay extends JavaPlugin{
 		
 		if(cmd.getName().equalsIgnoreCase("ireload") && (sender.hasPermission("iDisplay.reload") || sender.isOp())){
 			log.info("[iDisplay] Initiating Plugin Reload");
-			
-			
 			config = getConfiguration();
-			config.load();
+			config.load(); //Reloads configuration file
 			
 			
 			Player[] pl = getServer().getOnlinePlayers();
@@ -65,20 +71,20 @@ public class iDisplay extends JavaPlugin{
 				SpoutPlayer sp = (SpoutPlayer) pl[i];
 				if(!sp.isSpoutCraftEnabled()){
 					continue;
-				}
+		    }
 				
             Event ev = new SpoutCraftEnableEvent(sp);
-	        getServer().getPluginManager().callEvent(ev);
+	        getServer().getPluginManager().callEvent(ev); //Call the SpoutCraftEnable Event for every SpoutPlayer
 	        
-			}
+		}
 			log.info("[iDisplay] Reload Successful");
 			sender.sendMessage(ChatColor.DARK_RED + "[" + ChatColor.GREEN+"iDisplay"+ChatColor.DARK_RED+"] has been reloaded");
 			
 			return true;
-		}
+	}
 		
 		return false;
-	}
+}
 
 	
 }

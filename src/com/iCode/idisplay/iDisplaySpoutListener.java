@@ -30,7 +30,7 @@ public class iDisplaySpoutListener extends SpoutListener {
 			return;
 		}
 		if(!player.hasPermission("iDisplay.title") && !player.isOp()){
-			player.sendNotification("Permission", "You do not have permission", Material.RED_ROSE);
+			player.sendNotification("Permission", "You do not have permission", Material.RED_ROSE); //Permissions
 			return;
 		}
 		if(player.isDead()){
@@ -46,7 +46,7 @@ public class iDisplaySpoutListener extends SpoutListener {
 		for(int i =0; i < players.length; i++){
 			
 			try{@SuppressWarnings("unused")
-			SpoutPlayer p = (SpoutPlayer)players[i];}
+			SpoutPlayer p = (SpoutPlayer)players[i];} //Tests if the player is actually a SpoutPlayer
 			catch(Exception e){continue;}
 			
 		am.setPlayerTitle((SpoutPlayer)players[i], (LivingEntity)player, newtitle);

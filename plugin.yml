@@ -1,0 +1,12 @@
+name: iDisplay
+main: com.iCode.idisplay.iDisplay
+version: 1.0.0
+authors: [Hoddie54, thehutch]
+description: Changes player's title using SpoutCraft
+softdepend: [Spout]
+commands:
+    ireload:        
+        description: Reloads iDisplay
+        usage: /<command>
+
+           
